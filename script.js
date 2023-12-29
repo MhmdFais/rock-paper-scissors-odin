@@ -18,49 +18,66 @@ function getPlayerSelection(){
     return userInput;  
 }
 
-function game(){
-    let plaerWon = 0;
-    let computerWon = 0;
-    for ( let i=0; i<5 ; i++){
-        playRound(playerSelection, computerSelection);
-    }
-}
-
 
 function playRound(playerSelection, computerSelection){
     let playerSelectedInCapital = playerSelection.toUpperCase();
     let computerSelectedInCapital = computerSelection.toUpperCase();
 
     if ( playerSelectedInCapital === computerSelectedInCapital ){
-        //re play 
+        return 'draw';
     }
     else if ( playerSelectedInCapital === "ROCK" ){
         if ( computerSelectedInCapital === "PAPER" ){
-            return 'You lose! paper beats rock';
+            return 'lose';
         }
         else {
-            return 'You won! rock beats scissor';
+            return 'won';
         }
     }
     else if ( playerSelectedInCapital === "PAPER" ){
         if ( computerSelectedInCapital === "ROCK" ){
-            return 'You won! paper beats rock';
+            return 'won';
         }
         else {
-            return 'You lose! scissor beats paper';
+            return 'lose';
         }
     }
     else if ( playerSelectedInCapital === "SCISSOR" ){
         if ( computerSelectedInCapital === "ROCK" ){
-            return 'You lose! rock beats scissor';
+            return 'lose';
         }
         else {
-            return 'You won! scissor beats rock';
+            return 'won';
         }
     }
 }
 
-let computerSelection = getComputerSelection(selctionArray);
-let playerSelection = getPlayerSelection();
-console.log(playRound(playerSelection, computerSelection));   
+function game(){
+    let playerWon = 0;
+    let computerWon = 0;
+    for ( let i=0; i<5 ; i++){
+        let computerSelection = getComputerSelection(selctionArray);
+        let playerSelection = getPlayerSelection();
+
+        let result = playRound(playerSelection, computerSelection);
+        
+        if (result === 'won'){
+            playerWon++;
+        }
+        else if (result === 'lose'){
+            computerWon++;
+        }
+    }
+    if ( playerWon > computerWon ){
+        return 'You won!';
+    }
+    else if ( playerWon < computerWon ){
+        return 'You lose!';
+    }
+    else {
+        return 'Match drawn!';
+    }
+}
+
+console.log(game());   
 
