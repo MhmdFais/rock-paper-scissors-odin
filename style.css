@@ -1,0 +1,23 @@
+.body{
+    margin: 0;
+    padding: 0;
+}
+
+.main-container{
+    padding: 10px 450px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding-bottom: 20px;
+}
+
+.player{
+    padding-bottom: 15px;
+}
+
+button{
+    padding: 10px 20px;
+}

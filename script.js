@@ -12,38 +12,29 @@ function getComputerSelection(selctionArray){
     return itemSelected;
 }
 
-function getPlayerSelection(){
-    let userInput = prompt("Please enter your selection: ");
-    console.log(userInput);
-    return userInput;  
-}
-
 
 function playRound(playerSelection, computerSelection){
-    let playerSelectedInCapital = playerSelection.toUpperCase();
-    let computerSelectedInCapital = computerSelection.toUpperCase();
-
-    if ( playerSelectedInCapital === computerSelectedInCapital ){
+    if ( playerSelection === computerSelection ){
         return 'draw';
     }
-    else if ( playerSelectedInCapital === "ROCK" ){
-        if ( computerSelectedInCapital === "PAPER" ){
+    else if ( playerSelection === "ROCK" ){
+        if ( computerSelection === "PAPER" ){
             return 'lose';
         }
         else {
             return 'won';
         }
     }
-    else if ( playerSelectedInCapital === "PAPER" ){
-        if ( computerSelectedInCapital === "ROCK" ){
+    else if ( playerSelection === "PAPER" ){
+        if ( computerSelection === "ROCK" ){
             return 'won';
         }
         else {
             return 'lose';
         }
     }
-    else if ( playerSelectedInCapital === "SCISSOR" ){
-        if ( computerSelectedInCapital === "ROCK" ){
+    else if ( playerSelection === "SCISSOR" ){
+        if ( computerSelection === "ROCK" ){
             return 'lose';
         }
         else {
@@ -52,32 +43,77 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-function game(){
-    let playerWon = 0;
-    let computerWon = 0;
-    for ( let i=0; i<5 ; i++){
-        let computerSelection = getComputerSelection(selctionArray);
-        let playerSelection = getPlayerSelection();
+//UI - JAVA SCRIPT
 
-        let result = playRound(playerSelection, computerSelection);
-        
-        if (result === 'won'){
-            playerWon++;
+//Buttons
+let btnRck = document.querySelector('#btnRck');
+let btnPpr = document.querySelector('#btnPpr');
+let btnScr = document.querySelector('#btnScr');
+
+//Other variables
+let playerWonRounds = 0;
+let computerWonRounds = 0;
+let playerContentWon = document.createElement('div');
+let comContentWon = document.createElement('div');
+let mainBody = document.querySelector('.main-container');
+let playerPointBody = document.querySelector('.player');
+let computerPointBody = document.querySelector('.computer');
+let mainResult = document.createElement('div');
+
+function updateTheDisplay(){
+    playerContentWon.textContent = playerWonRounds;
+    comContentWon.textContent = computerWonRounds;
+
+    playerPointBody.appendChild(playerContentWon);
+    computerPointBody.appendChild(comContentWon);
+
+    if( playerWonRounds===5 || computerWonRounds===5 ){
+        if ( playerWonRounds === 5 ) {
+            mainResult.textContent = 'You Won!!';
+            mainBody.appendChild(mainResult);
         }
-        else if (result === 'lose'){
-            computerWon++;
+        else {
+            mainResult.textContent = 'You Lost!!';
+            mainBody.appendChild(mainResult);
         }
+
+        btnRck.disabled = true;
+        btnScr.disabled = true;
+        btnPpr.disabled = true;
     }
-    if ( playerWon > computerWon ){
-        return 'You won!';
-    }
-    else if ( playerWon < computerWon ){
-        return 'You lose!';
+}
+
+function playTheGame(playerSelection){
+    let computerSelection = getComputerSelection(selctionArray);
+
+    let result = playRound(playerSelection, computerSelection);
+
+    if ( result === 'won' ){
+        playerWonRounds++;
     }
     else {
-        return 'Match drawn!';
+        computerWonRounds++;
     }
+
+    updateTheDisplay();
 }
 
-console.log(game());   
+btnRck.addEventListener( 'click', ()=>{
+    playTheGame('ROCK');
+});
+
+btnPpr.addEventListener('click', () => {
+    playTheGame('PAPER');
+});
+
+btnScr.addEventListener('click', () => {
+    playTheGame('SCISSOR');
+});
+
+//Main result styling
+mainResult.style.paddingTop = '15px';
+mainResult.style.color = 'Red';
+mainResult.style.fontSize = '30px';
+
+
 
