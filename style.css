@@ -10,8 +10,24 @@
 .buttons{
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    gap: 20px;
     padding-bottom: 20px;
+}
+
+#btnScr, #btnPpr, #btnRck{
+    border-radius: 30px;
+}
+
+#btnScr{
+    border: 1px solid rgb(233, 121, 121);
+}
+
+#btnPpr{
+    border: 1px solid rgb(219, 219, 114);
+}
+
+#btnRck{
+    border: 1px solid rgb(111, 235, 111);
 }
 
 .player{
