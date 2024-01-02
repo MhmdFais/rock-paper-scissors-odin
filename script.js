@@ -1,15 +1,14 @@
-let selctionArray = ["rock", "paper", "scissor"];
 
-function getComputerSelection(selctionArray){
-    //getting the random index
-    let randomIndex = Math.floor(Math.random() * selctionArray.length);
-
-    //get the value for that index
-    let itemSelected = selctionArray[randomIndex];
-
-    console.log(itemSelected);
-
-    return itemSelected;
+function getComputerSelection(){
+    let randomNumber = Math.floor(Math.random() * 3)
+    switch (randomNumber) {
+    case 0:
+      return 'ROCK'
+    case 1:
+      return 'PAPER'
+    case 2:
+      return 'SCISSOR'
+  }
 }
 
 
@@ -59,6 +58,7 @@ let mainBody = document.querySelector('.main-container');
 let playerPointBody = document.querySelector('.player');
 let computerPointBody = document.querySelector('.computer');
 let mainResult = document.createElement('div');
+let bodyContainer = document.querySelector('.main-body');
 
 function updateTheDisplay(){
     playerContentWon.textContent = playerWonRounds;
@@ -70,11 +70,11 @@ function updateTheDisplay(){
     if( playerWonRounds===5 || computerWonRounds===5 ){
         if ( playerWonRounds === 5 ) {
             mainResult.textContent = 'You Won!!';
-            mainBody.appendChild(mainResult);
+            bodyContainer.appendChild(mainResult);
         }
         else {
             mainResult.textContent = 'You Lost!!';
-            mainBody.appendChild(mainResult);
+            bodyContainer.appendChild(mainResult);
         }
 
         btnRck.disabled = true;
@@ -84,7 +84,7 @@ function updateTheDisplay(){
 }
 
 function playTheGame(playerSelection){
-    let computerSelection = getComputerSelection(selctionArray);
+    let computerSelection = getComputerSelection();
 
     let result = playRound(playerSelection, computerSelection);
 
@@ -111,9 +111,22 @@ btnScr.addEventListener('click', () => {
 });
 
 //Main result styling
-mainResult.style.paddingTop = '15px';
-mainResult.style.color = 'Red';
-mainResult.style.fontSize = '30px';
+mainResult.style.paddingTop = '25px';
+mainResult.style.color = '#f4b41a';
+mainResult.style.fontSize = '50px';
+mainResult.style.fontFamily = " 'Silkscreen', sans-serif  ";
+
+playerContentWon.style.alignItems = 'center';
+playerContentWon.style.justifyContent = 'center'
+playerContentWon.style.paddingTop = '23px';
+playerContentWon.style.paddingLeft = '50px';
+playerContentWon.style.fontSize = '50px';
+playerContentWon.style.fontFamily = " 'Silkscreen', sans-serif ";
 
 
-
+comContentWon.style.alignItems = 'center';
+comContentWon.style.justifyContent = 'center'
+comContentWon.style.paddingTop = '23px';
+comContentWon.style.paddingLeft = '65px';
+comContentWon.style.fontSize = '50px';
+comContentWon.style.fontFamily = " 'Silkscreen', sans-serif ";
