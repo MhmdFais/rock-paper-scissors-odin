@@ -1,11 +1,13 @@
 body{
     margin: 0;
     padding: 0;
+    background-color: #354f52;
 }
 
 .main-container{
     display: flex;
     flex-direction: column;
+    margin-bottom: 100px;
 }
 
 .heading{
@@ -21,7 +23,7 @@ body{
 }
 
 .main-body{
-    background-color: #354f52;
+    /**background-color: #354f52;**/
     display: flex;
     flex-direction: column;
     padding-top: 15px;
@@ -29,7 +31,7 @@ body{
     padding-right: 100px;
     align-items: center;
     /**height: 798px;**/
-    height: 83vh;
+    /**height: 83vh;**/
 }
 
 .choose-text{
