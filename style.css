@@ -55,6 +55,14 @@ body{
     width: 180px;
     border: none;
     background-color: #2a3b38;
+    box-shadow: 4px 6px 5px #1e2b28;
+}
+
+#btnScr:hover, 
+#btnPpr:hover, 
+#btnRck:hover{
+    background-color: #293d3f;
+    box-shadow: none;
 }
 
 .sign{
